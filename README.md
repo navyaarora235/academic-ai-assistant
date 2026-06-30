@@ -1,13 +1,13 @@
-# Academic Document Query Microservice
+#Academic Document Query Microservice
 
 A production-ready, modular backend web service built with **FastAPI** and **Gemini 2.5-Flash** that allows users to query academic PDF documents via structured REST API endpoints.
 
-##  Technical Architecture
+#Technical Architecture
 - **Separation of Concerns:** Deconstructed monolithic script architecture into a clean split between the API router service (`main.py`) and the textual extraction pipeline (`pipeline.py`).
 - **Native Text Parsing:** Processes local document contexts seamlessly utilizing `pypdf`.
 - **Isolated Integration Testing:** Implements an automated backend test suite using FastAPI's `TestClient` framework to guarantee endpoint integrity independently of browser/network constraints.
 
-##  Project Structure
+#Project Structure
 ```text
 academic-ai-assistant/
 │
