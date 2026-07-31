@@ -2,5 +2,6 @@ fastapi
 uvicorn
 pypdf
 google-genai
-python-dotenv
+streamlit
 requests
+pytest
