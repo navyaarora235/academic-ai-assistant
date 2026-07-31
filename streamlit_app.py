@@ -6,7 +6,7 @@ st.set_page_config(page_title="Academic AI Assistant", page_icon="🎓")
 st.title("🎓 Academic AI Assistant")
 st.subheader("Query your academic documents with Gemini 2.5-Flash")
 
-API_URL = st.sidebar.text_input("Backend API URL", value="http://127.0.0.1:8000")
+API_URL = st.sidebar.text_input("Backend API URL", value="https://academic-ai-assistant-eq4n.onrender.com/")
 
 uploaded_file = st.file_uploader("Upload an Academic PDF", type=["pdf"])
 
