@@ -1,12 +1,12 @@
 import streamlit as st
 import requests
 
-
 st.set_page_config(page_title="Academic AI Assistant", page_icon="🎓")
 st.title("🎓 Academic AI Assistant")
 st.subheader("Query your academic documents with Gemini 2.5-Flash")
 
-API_URL = st.sidebar.text_input("Backend API URL", value="https://academic-ai-assistant-eq4n.onrender.com/")
+# Clean default URL without trailing slash
+API_URL = st.sidebar.text_input("Backend API URL", value="https://academic-ai-assistant-eq4n.onrender.com")
 
 uploaded_file = st.file_uploader("Upload an Academic PDF", type=["pdf"])
 
@@ -19,7 +19,10 @@ if st.button("Submit Query"):
                 files = {"file": (uploaded_file.name, uploaded_file.getvalue(), "application/pdf")}
                 data = {"question": query}
                 
-                response = requests.post(f"{API_URL}/query-pdf", files=files, data=data)
+                # Safely format URL to hit /query matching app/main.py
+                target_url = f"{API_URL.rstrip('/')}/query"
+                
+                response = requests.post(target_url, files=files, data=data)
                 
                 if response.status_code == 200:
                     result = response.json()
