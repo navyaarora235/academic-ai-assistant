@@ -2,6 +2,7 @@
 
 A production-ready, modular backend web service built with **FastAPI** and **Gemini 2.5-Flash** that allows users to query academic PDF documents via structured REST API endpoints and an interactive web UI.
 
+<<<<<<< HEAD
 [![Streamlit App](https://img.shields.io/badge/Live_Demo-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit)](https://academic-ai-assistant.streamlit.app/)
 
 ## Technical Architecture
@@ -12,6 +13,14 @@ A production-ready, modular backend web service built with **FastAPI** and **Gem
 
 ## Project Structure
 
+=======
+## Technical Architecture
+- **Separation of Concerns:** Deconstructed monolithic script architecture into a clean split between the API router service (`main.py`) and the textual extraction pipeline (`pipeline.py`).
+- **Native Text Parsing:** Processes local document contexts seamlessly utilizing `pypdf`.
+- **Isolated Integration Testing:** Implements an automated backend test suite using FastAPI's `TestClient` framework to guarantee endpoint integrity independently of browser/network constraints.
+
+## Project Structure
+>>>>>>> 38ac179 (Add Streamlit frontend UI)
 ```text
 academic-ai-assistant/
 │
