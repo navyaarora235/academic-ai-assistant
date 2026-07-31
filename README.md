@@ -2,7 +2,7 @@
 
 A production-ready, modular backend web service built with **FastAPI** and **Gemini 2.5-Flash** that allows users to query academic PDF documents via structured REST API endpoints and an interactive web UI.
 
-[![Streamlit App](https://img.shields.io/badge/Live_Demo-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit)](https://academic-ai-assistant-989eusypzq3p4gsgnz6tev.streamlit.app)
+[![Streamlit App](https://img.shields.io/badge/Live_Demo-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit)](https://academic-ai-assistant.streamlit.app/)
 
 ## Technical Architecture
 
