@@ -1,36 +1,48 @@
-# Academic Document Query Microservice
+# Academic Document Query Service
 
-A production-ready, modular backend web service built with **FastAPI** and **Gemini 2.5-Flash** that allows users to query academic PDF documents via structured REST API endpoints and an interactive web UI.
+A FastAPI backend and Streamlit front end that lets users upload an academic PDF and ask questions about it, answered by Gemini 2.5 Flash.
 
-<<<<<<< HEAD
 [![Streamlit App](https://img.shields.io/badge/Live_Demo-Streamlit-FF4B4B?style=for-the-badge&logo=streamlit)](https://academic-ai-assistant.streamlit.app/)
 
-## Technical Architecture
+## How it works
 
-* **Separation of Concerns:** Deconstructed monolithic script architecture into a clean split between the API router service (`main.py`), the textual extraction pipeline (`pipeline.py`), and a lightweight client interface (`streamlit_app.py`).
-* **Native Text Parsing:** Processes local document contexts seamlessly utilizing `pypdf`.
-* **Isolated Integration Testing:** Implements an automated backend test suite using FastAPI's `TestClient` framework to guarantee endpoint integrity independently of browser/network constraints.
+1. The user uploads a PDF and types a question (through the Streamlit UI or `POST /query`).
+2. `pypdf` extracts the text from the PDF.
+3. The full text and the question go to Gemini in one prompt, which is told to answer only from the document.
+4. The API returns JSON with the question and the answer.
 
-## Project Structure
+## Features
 
-=======
-## Technical Architecture
-- **Separation of Concerns:** Deconstructed monolithic script architecture into a clean split between the API router service (`main.py`) and the textual extraction pipeline (`pipeline.py`).
-- **Native Text Parsing:** Processes local document contexts seamlessly utilizing `pypdf`.
-- **Isolated Integration Testing:** Implements an automated backend test suite using FastAPI's `TestClient` framework to guarantee endpoint integrity independently of browser/network constraints.
+- REST endpoint (`POST /query`) with input validation and error handling.
+- Clean split between the API (`main.py`), the PDF and Gemini logic (`pipeline.py`), and the UI (`streamlit_app.py`).
+- Tests using FastAPI's `TestClient` (`test_api.py`).
 
-## Project Structure
->>>>>>> 38ac179 (Add Streamlit frontend UI)
-```text
+## Limitations
+
+- The whole document text is sent in a single prompt, so very long PDFs may exceed the model's context limit.
+- Scanned PDFs without selectable text are not supported.
+- This is prompt-based Q&A, not RAG: there is no chunking or retrieval.
+
+## Run locally
+
+```
+pip install -r requirements.txt
+# set GEMINI_API_KEY in a .env file
+uvicorn app.main:app --reload
+streamlit run streamlit_app.py
+pytest
+```
+
+## Project structure
+
+```
 academic-ai-assistant/
-│
 ├── app/
-│   ├── main.py        # FastAPI Web Routing Gateway
-│   └── pipeline.py    # PDF Processing & Gemini Integration Engine
-│
-├── .gitignore
-├── README.md
-├── requirements.txt   # Dependency Registry
-├── sample.pdf         # Test Document
-├── streamlit_app.py   # Streamlit Client Interface
-└── test_api.py        # Integration Test Suite
+│   ├── main.py          # FastAPI routes
+│   └── pipeline.py      # PDF text extraction and Gemini call
+├── streamlit_app.py     # Streamlit front end
+├── test_api.py          # Tests
+├── sample.pdf           # Sample document
+├── requirements.txt
+└── README.md
+```
