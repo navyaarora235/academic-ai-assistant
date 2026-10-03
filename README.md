@@ -10,6 +10,7 @@ A FastAPI backend and Streamlit front end that lets users upload an academic PDF
 2. `pypdf` extracts the text from the PDF.
 3. The full text and the question go to Gemini in one prompt, which is told to answer only from the document.
 4. The API returns JSON with the question and the answer.
+5. The backend is deployed on Render; the Streamlit front end calls it over HTTP.
 
 ## Features
 
